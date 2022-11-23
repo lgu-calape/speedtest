@@ -1,3 +1,5 @@
 #/bin/bash
 
-/usr/bin/speedtest -s 3735 -f json|jq -r .result.url >> results.txt & git add results.txt & git commit -m "speedtest result - $(date +'%Y-%m-%d @ %H:%M:%S')"
+RESULT_FILE=speedtest-$(date +'%s').json
+
+/usr/bin/speedtest -s 3735 -f json|jq -r .result.url > $RESULT_FILE & git add $RESULT_FILE & git commit -m $RESULT_FILE
