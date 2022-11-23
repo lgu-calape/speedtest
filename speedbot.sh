@@ -2,4 +2,6 @@
 
 RESULT_FILE=speedtest-$(date +'%s').json
 
-/usr/bin/speedtest -s 3735 -f json-pretty > "$RESULT_FILE" & git add "$RESULT_FILE" & git commit -m "$RESULT_FILE" & git push origin master
+cd /home/biometric/speedtest
+
+/usr/bin/speedtest -s 3735 -f json-pretty > "$RESULT_FILE" & git add "$RESULT_FILE" & git commit -m "speedtest $(date +'%c')" & git push origin master
