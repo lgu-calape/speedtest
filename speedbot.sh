@@ -1,7 +1,12 @@
 #/bin/bash
 
-RESULT_FILE=speedtest-$(date +'%s').json
+DIR=/home/biometric/speedtest
+FILE=speedtest-$(date +'%s').json
 
-cd /home/biometric/speedtest
-
-/usr/bin/speedtest -s 3735 -f json-pretty > "$RESULT_FILE" & git add "$RESULT_FILE" & git commit -m "speedtest $(date +'%c')" & git push origin master
+/usr/bin/speedtest -s 3735 -f json-pretty > "$DIR/$FILE"
+sleep 1m
+git -C $DIR add $FILE
+sleep 1s
+git -C $DIR commit -m "."
+sleep 1s
+git -C $DIR push origin master
