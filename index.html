@@ -13,7 +13,7 @@
   <body>
     <main class="container">
     <h2>speedtest monitor</h2>
-    <small>internet speed monitor of the municipality of calape</small>
+    <small>periodically check internet speed</small>
     <hr> 
     <div id="results"></div>
     </main>
@@ -26,12 +26,31 @@
         
         for (let file of data.sort((a,b)=>-1*a.name.localeCompare(b.name))) {
           if (file.name.indexOf('speedtest-') !== -1)
-            htmlString += `<li><a href="${file.path}">${file.name}</a></li>`;
+            htmlString += `<li><a href="#" data-file="${file.path}">${file.name}</a></li>`;
         }
 
         htmlString += '</ul>';
         document.getElementById('results').innerHTML = htmlString;
       })()
+
+      function view_item(f) {
+        let x = new XMLHttpRequest();
+
+        x.addEventListener('readystatechange',()=>{
+          if (x.readyState == 4) {
+            if (x.status == 200) {
+              let d = JSON.parse(x.responseText);
+
+              window.location.assign(d.result.url);
+            }
+          }
+        });
+
+        x.open('GET',f);
+        x.send();
+      }
+
+      document.querySelectorAll('li>a').item((e)=>view_item(e.dataset.file));
     </script>
   <body>
 </html>
