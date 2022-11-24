@@ -26,16 +26,47 @@
     ul>li:hover {
       color: #017206;
     }
+
+    footer>p {
+      font-size: 0.75em;
+    }
+
+    .container {
+      padding: 0;
+    }
+
+    .swal-modal {
+      background-color: transparent;
+    }
+
+    .swal-button {
+      background-color: #b00c0c;
+      padding: 5px 12px;
+    }
+
+    .swal-button:not([disabled]):hover {
+      background-color: #df250c;
+    }
+
+    .swal-button:focus {
+      box-shadow: none;
+    }
   </style>
 </head>
 
 <body>
-  <main class="container">
+  <header class="container">
     <h2>speedtest monitor</h2>
-    <small>periodically check internet speed</small>
+    <small>periodically check internet speed every non-working hours.</small>
     <hr>
+  </header>
+  <main class="container">
     <div id="results"></div>
   </main>
+
+  <footer class="container">
+    <p>This page monitor the Globe BIZ Standard BB Plan 9499 1Gbps Unli / Service ID: (38)5020799</p>
+  </footer>
 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
@@ -48,7 +79,7 @@
         if (file.name.indexOf('speedtest-') !== -1) {
           let li = document.createElement('li');
 
-          li.textContent = file.name;
+          li.textContent = new Date(file.name.split('_')[1].replace(/\.json/,'') * 1e3);
           li.addEventListener('click', () => v(file.path));
           ul.appendChild(li);
         }
@@ -68,7 +99,7 @@
             swal({
               title: new Date(d.timestamp).toLocaleString(),
               icon: d.result.url + '.png',
-              button: 'close',
+              button: '×',
             });
           }
         }
