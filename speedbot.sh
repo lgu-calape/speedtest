@@ -1,7 +1,7 @@
 #/bin/bash
 
 DIR=/home/biometric/speedtest
-FILE=speedtest-$(date +'%s').json
+FILE=speedtest-$(date "+%F_%s").json
 
 /usr/bin/speedtest -s 3735 -f json-pretty > "$DIR/$FILE"
 sleep 1m
