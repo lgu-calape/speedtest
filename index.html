@@ -42,7 +42,7 @@
       document.getElementById('results').innerHTML = htmlString;
     })()
 
-    function v() {
+    function v(f) {
       let x = new XMLHttpRequest();
 
       x.addEventListener('readystatechange', () => {
@@ -55,11 +55,11 @@
         }
       });
 
-      x.open('GET', this.dataset.file);
+      x.open('GET', f);
       x.send();
     }
 
-    document.querySelectorAll('li>a').forEach((e) => {e.addEventListener('click',v)});
+    document.querySelectorAll('li>a').forEach((e) => { e.addEventListener('click', v(e.dataset.file)) });
   </script>
 </body>
 
