@@ -59,7 +59,7 @@
       x.send();
     }
 
-    document.querySelectorAll('li>a').forEach((e) => { e.addEventListener('click', v(e.dataset.file)) });
+    document.querySelectorAll('li>a').forEach((e) => { e.addEventListener('click', () => v(e.dataset.file)) });
   </script>
 </body>
 
