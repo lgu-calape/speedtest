@@ -32,11 +32,16 @@
     }
 
     .container {
-      padding: 0;
+      padding-top: 5px;
+      padding-bottom: 10px;
     }
 
     .swal-modal {
       background-color: transparent;
+    }
+
+    .swal-title {
+      color: #fff;
     }
 
     .swal-button {
@@ -57,7 +62,7 @@
 <body>
   <header class="container">
     <h2>speedtest monitor</h2>
-    <small>periodically check internet speed every non-working hours.</small>
+    <small>periodically check internet speed during non-busy hours.</small>
     <hr>
   </header>
   <main class="container">
@@ -66,6 +71,7 @@
 
   <footer class="container">
     <p>This page monitor the Globe BIZ Standard BB Plan 9499 1Gbps Unli / Service ID: (38)5020799</p>
+    <p>Contribute: <a href="https://github.com/lgu-calape/speedtest" target="_blank">github.com/lgu-calape/speedtest</a></p>
   </footer>
 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -99,7 +105,7 @@
             swal({
               title: new Date(d.timestamp).toLocaleString(),
               icon: d.result.url + '.png',
-              button: '×',
+              button: false
             });
           }
         }
