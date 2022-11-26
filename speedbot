@@ -1,0 +1,18 @@
+#/bin/bash
+
+DIR=/home/pi/speedtest
+FILE=speedtest-$(date "+%F_%s").json
+
+/usr/local/bin/speedtest -s 3735 -f json-pretty > "$DIR/$FILE" 2> /dev/null
+sleep 1m
+
+if [ -s $FILE ]; then
+  rm $FILE
+else
+  git checkout test1
+  git -C $DIR add $FILE
+  sleep 1s
+  git -C $DIR commit -m "."
+  sleep 1s
+  git -C $DIR push origin test1
+fi
