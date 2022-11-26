@@ -3,10 +3,15 @@
 DIR=/home/biometric/speedtest
 FILE=speedtest-$(date "+%F_%s").json
 
-/usr/bin/speedtest -s 3735 -f json-pretty > "$DIR/$FILE"
+/usr/bin/speedtest -s 3735 -f json-pretty > "$DIR/$FILE" 2> /dev/null
 sleep 1m
-git -C $DIR add $FILE
-sleep 1s
-git -C $DIR commit -m "."
-sleep 1s
-git -C $DIR push origin master
+
+if [ -s $FILE ]; then
+  rm $FILE
+else
+  git -C $DIR add $FILE
+  sleep 1s
+  git -C $DIR commit -m "."
+  sleep 1s
+  git -C $DIR push origin master
+fi
