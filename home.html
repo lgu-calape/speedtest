@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.4.4/css/pico.min.css">
+  <link rel="icon" class="js-site-favicon" type="image/svg+xml"
+    href="https://github.githubassets.com/favicons/favicon.svg">
+  <title>speedtest monitor</title>
+  <style>
+    h2 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    small {
+      margin: 0;
+      font-size: 0.75em;
+    }
+
+    ul>li {
+      cursor: pointer;
+    }
+
+    ul>li:hover {
+      color: #017206;
+    }
+
+    footer>p {
+      font-size: 0.75em;
+    }
+
+    .container {
+      padding-top: 5px;
+      padding-bottom: 10px;
+    }
+
+    .swal-modal {
+      background-color: transparent;
+    }
+
+    .swal-title {
+      color: #fff;
+    }
+
+    .swal-button {
+      background-color: #b00c0c;
+      padding: 5px 12px;
+    }
+
+    .swal-button:not([disabled]):hover {
+      background-color: #df250c;
+    }
+
+    .swal-button:focus {
+      box-shadow: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="container">
+    <h2>home network</h2>
+    <small>periodically check internet speed.</small>
+    <hr>
+  </header>
+  <main class="container">
+    <div id="results"></div>
+  </main>
+
+  <footer class="container">
+    <p>ISP Subscription: GFiber 2899 650Mbps UNLI</p>
+  </footer>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    (async () => {
+      const response = await fetch('https://api.github.com/repos/lgu-calape/speedtest/contents?ref=test1');
+      const data = await response.json();
+      const ul = document.createElement('ul');
+
+      for (let file of data.sort((a, b) => -1 * a.name.localeCompare(b.name))) {
+        if (file.name.indexOf('speedtest-') !== -1) {
+          let li = document.createElement('li');
+
+          li.textContent = new Date(file.name.split('_')[1].replace(/\.json/,'') * 1e3);
+          li.addEventListener('click', () => v(file.download_url));
+          ul.appendChild(li);
+        }
+      }
+
+      document.getElementById('results').append(ul);
+    })()
+
+    function v(f) {
+      let x = new XMLHttpRequest();
+
+      x.addEventListener('readystatechange', () => {
+        if (x.readyState == 4) {
+          if (x.status == 200) {
+            let d = JSON.parse(x.responseText);
+
+            swal({
+              title: new Date(d.timestamp).toLocaleString(),
+              icon: d.result.url + '.png',
+              button: false
+            });
+          }
+        }
+      });
+
+      x.open('GET', f);
+      x.send();
+    }
+  </script>
+</body>
+
+</html>
