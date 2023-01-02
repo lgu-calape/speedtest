@@ -1,0 +1,54 @@
+{
+    "type": "result",
+    "timestamp": "2023-01-02T19:00:18Z",
+    "ping": {
+        "jitter": 0.200,
+        "latency": 5.441,
+        "low": 5.280,
+        "high": 5.613
+    },
+    "download": {
+        "bandwidth": 29742429,
+        "bytes": 258402200,
+        "elapsed": 8600,
+        "latency": {
+            "iqm": 4.497,
+            "low": 3.701,
+            "high": 219.965,
+            "jitter": 12.549
+        }
+    },
+    "upload": {
+        "bandwidth": 29649240,
+        "bytes": 190866802,
+        "elapsed": 6415,
+        "latency": {
+            "iqm": 4.094,
+            "low": 3.677,
+            "high": 224.439,
+            "jitter": 7.211
+        }
+    },
+    "isp": "Globe Telecom",
+    "interface": {
+        "internalIp": "192.168.100.250",
+        "name": "eth0",
+        "macAddr": "DC:A6:32:F4:44:18",
+        "isVpn": false,
+        "externalIp": "180.190.223.62"
+    },
+    "server": {
+        "id": 3735,
+        "host": "lhg2-speedtest.globe.com.ph",
+        "port": 8080,
+        "name": "Globe Telecom",
+        "location": "Cebu City",
+        "country": "Philippines",
+        "ip": "120.28.63.206"
+    },
+    "result": {
+        "id": "23e7697d-f8d3-49c6-8ac4-99d535f2225a",
+        "url": "https://www.speedtest.net/result/c/23e7697d-f8d3-49c6-8ac4-99d535f2225a",
+        "persisted": true
+    }
+}
