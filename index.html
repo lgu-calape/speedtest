@@ -100,7 +100,13 @@
       x.addEventListener('readystatechange', () => {
         if (x.readyState == 4) {
           if (x.status == 200) {
-            let d = JSON.parse(x.responseText);
+            let r = x.responseText;
+            
+            if (!r) {
+              alert('No proper speedtest record at this point.');
+            }
+            
+            let d = JSON.parse(r);
 
             swal({
               title: new Date(d.timestamp).toLocaleString(),
