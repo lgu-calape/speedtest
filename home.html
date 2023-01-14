@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,7 +69,7 @@
   </main>
 
   <footer class="container">
-    <p>ISP Subscription: Globe Residential, GFiber 2899 650Mbps UNLI; Compare w/ <a href="/">Globe Enterprise Connection</a></p>
+    <p>ISP Subscription: Globe Residential, GFiber 1699 150Mbps UNLI; Compare w/ <a href="/">Globe Enterprise Connection</a></p>
   </footer>
 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -99,7 +98,14 @@
       x.addEventListener('readystatechange', () => {
         if (x.readyState == 4) {
           if (x.status == 200) {
-            let d = JSON.parse(x.responseText);
+            let r = x.responseText;
+            
+            if (!r) {
+              alert('No proper speedtest at this point.');
+              return;
+            }
+            
+            let d = JSON.parse(r);
 
             swal({
               title: new Date(d.timestamp).toLocaleString(),
@@ -115,5 +121,4 @@
     }
   </script>
 </body>
-
 </html>
